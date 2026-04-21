@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout | Ed Muffin</title>
+  <meta name="description" content="Complete your Ed Muffin order with crypto payment." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">Ed<span>Matthews</span></a>
+      <div class="header-actions">
+        <a class="header-cta" href="index.html">Back to Site</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="checkout-page">
+    <div class="container">
+      <div class="checkout-topbar">
+        <p class="eyebrow">CHECKOUT</p>
+        <h1>Complete Your Order</h1>
+        <p class="checkout-intro">
+          Secure your Ed Muffin order by selecting a payment method, sending the exact amount, and submitting your transaction details below.
+        </p>
+      </div>
+
+      <div class="checkout-grid">
+        <section class="checkout-card order-summary">
+          <p class="eyebrow">ORDER SUMMARY</p>
+
+          <div class="summary-product">
+            <img src="assets/cupcake.png" alt="Ed Muffin cupcake" class="checkout-product-image" />
+            <div class="summary-product-copy">
+              <p class="product-tag">Limited Edition</p>
+              <h2>Ed Muffin</h2>
+              <p class="summary-description">
+                Vanilla cupcake with an edible Ed Muffin topper, released as part of a limited run of 100.
+              </p>
+            </div>
+          </div>
+
+          <div class="summary-lines">
+            <div class="summary-row">
+              <span>Product</span>
+              <span>1 x Ed Muffin</span>
+            </div>
+            <div class="summary-row">
+              <span>Edition</span>
+              <span>Limited run of 100</span>
+            </div>
+            <div class="summary-row">
+              <span>Price</span>
+              <span>$5.99</span>
+            </div>
+            <div class="summary-row total-row">
+              <span>Total</span>
+              <span>$5.99</span>
+            </div>
+          </div>
+
+          <div class="checkout-note-box">
+            <p>Orders are reviewed manually after payment is submitted.</p>
+          </div>
+        </section>
+
+        <section class="checkout-card payment-card">
+          <p class="eyebrow">CRYPTO PAYMENT</p>
+          <h2>Pay with Crypto</h2>
+          <p class="payment-instructions">
+            Select your preferred coin, send the exact amount shown, then enter your transaction hash and delivery details.
+          </p>
+
+          <div class="payment-methods">
+            <button type="button" class="payment-method active" data-coin="sol">Solana</button>
+            <button type="button" class="payment-method" data-coin="btc">Bitcoin</button>
+            <button type="button" class="payment-method" data-coin="eth">Ethereum</button>
+            <button type="button" class="payment-method" data-coin="usdt">USDT (ERC-20)</button>
+          </div>
+
+          <div class="payment-details-box">
+            <div class="payment-detail-row">
+              <span class="detail-label">Selected payment</span>
+              <span class="detail-value" id="selectedCoinLabel">Solana</span>
+            </div>
+            <div class="payment-detail-row">
+              <span class="detail-label">Amount to send</span>
+              <span class="detail-value" id="selectedAmount">0.04 SOL</span>
+            </div>
+            <div class="payment-detail-row">
+              <span class="detail-label">Network</span>
+              <span class="detail-value" id="selectedNetwork">Solana</span>
+            </div>
+          </div>
+
+          <label for="walletAddress" class="field-label">Wallet address</label>
+          <div class="wallet-box">
+            <input id="walletAddress" type="text" readonly />
+            <button type="button" id="copyWalletBtn" class="small-btn">Copy</button>
+          </div>
+
+          <p class="wallet-note" id="walletNote">
+            Send only Solana to this address.
+          </p>
+
+          <form
+            id="paymentForm"
+            class="payment-form"
+            action="https://formspree.io/f/xojykazl"
+            method="POST"
+          >
+            <input type="hidden" name="_subject" value="New Ed Muffin Order" />
+            <input type="hidden" name="_replyto" id="replyToField" value="" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+            <label class="field-label" for="fullName">Full name</label>
+            <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required />
+
+            <label class="field-label" for="email">Contact email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required />
+
+            <label class="field-label" for="customerAddress">Delivery address</label>
+            <textarea id="customerAddress" name="customerAddress" placeholder="Enter full delivery address" rows="4" required></textarea>
+
+            <label class="field-label" for="txid">Transaction hash / ID</label>
+            <input type="text" id="txid" name="txid" placeholder="Paste transaction hash" required />
+
+            <label class="field-label" for="orderNote">Order note (optional)</label>
+            <textarea id="orderNote" name="orderNote" placeholder="Add any extra delivery notes" rows="3"></textarea>
+
+            <input type="hidden" id="selectedCoinInput" name="selectedCoin" value="Solana" />
+            <input type="hidden" id="selectedAmountInput" name="selectedAmount" value="0.04 SOL" />
+
+            <button type="submit" class="btn btn-primary btn-full">Submit Order</button>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
